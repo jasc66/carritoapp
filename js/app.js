@@ -94,29 +94,67 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function leerDatosCurso(curso) {
+        const precioOriginal = parseFloat(curso.querySelector('.precio-original').textContent.replace('$', ''));
+        const precioOferta = parseFloat(curso.querySelector('.precio-oferta').textContent.replace('$', ''));
+    
         const infoCurso = {
             imagen: curso.querySelector('img').src,
             titulo: curso.querySelector('h4').textContent,
-            precio: curso.querySelector('.precio').textContent,
+            precioOferta: precioOferta,
+            precioOriginal: precioOriginal,
+            ahorro: (precioOriginal - precioOferta).toFixed(2),
             id: curso.querySelector('a').getAttribute('data-id'),
-            cantidad: 1
+            cantidad: 1,
         };
-
+    
         const existe = articulosCarrito.some((curso) => curso.id === infoCurso.id);
         if (existe) {
             articulosCarrito = articulosCarrito.map((curso) => {
                 if (curso.id === infoCurso.id) {
                     curso.cantidad++;
+                    curso.ahorro = (curso.cantidad * (curso.precioOriginal - curso.precioOferta)).toFixed(2);
                 }
                 return curso;
             });
         } else {
             articulosCarrito = [...articulosCarrito, infoCurso];
         }
-
+    
         carritoHTML();
     }
 
+    function carritoHTML() {
+        limpiarHTML();
+    
+        let totalCompra = 0;
+    
+        articulosCarrito.forEach((curso) => {
+            const subtotal = curso.precioOferta * curso.cantidad;
+            totalCompra += subtotal;
+    
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <img src="${curso.imagen}" width="100">
+                </td>
+                <td>${curso.titulo}</td>
+                <td>$${curso.precioOferta.toFixed(2)}</td>
+                <td>${curso.cantidad}</td>
+                <td>$${(curso.cantidad * (curso.precioOriginal - curso.precioOferta)).toFixed(2)}</td>
+                <td>
+                    <a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
+                </td>
+            `;
+            contenedorCarrito.appendChild(row);
+        });
+    
+        // Actualiza el total de la compra
+        document.getElementById('total-compra').textContent = `$${totalCompra.toFixed(2)}`;
+    
+        sincronizarStorage();
+        actualizarContadorCarrito();
+    }
+    
     function eliminarCurso(e) {
         e.preventDefault();
         if (e.target.classList.contains('borrar-curso')) {
@@ -125,30 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
             carritoHTML();
         }
     }
-
-    function carritoHTML() {
-        limpiarHTML();
-
-        articulosCarrito.forEach((curso) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>
-                    <img src="${curso.imagen}" width="100">
-                </td>
-                <td>${curso.titulo}</td>
-                <td>${curso.precio}</td>
-                <td>${curso.cantidad}</td>
-                <td>
-                    <a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
-                </td>
-            `;
-            contenedorCarrito.appendChild(row);
-        });
-
-        sincronizarStorage();
-        actualizarContadorCarrito();
-    }
-
+    
     function sincronizarStorage() {
         localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
     }
