@@ -1,4 +1,9 @@
 /* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -237,7 +242,7 @@ img {
 
 /* Hero section */
 #hero {
-    background-image: url(../img/hero.webp);
+    background-image: url(../img/hero1.webp);
     background-size: cover;
     background-position: center;
     height: 50vh;
