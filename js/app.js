@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const navMenu = document.querySelector('#nav-menu');
     const carritoOverlay = document.querySelector('#carrito-overlay');
     const imgCarrito = document.querySelector('#img-carrito');
-    const cerrarCarritoBtn = document.querySelector('#cerrar-carrito');
+    const cerrarCarritoBtn = document.querySelector('#cerrar-carrito-btn'); // Botón "X" dentro del modal
     let articulosCarrito = [];
 
     // Cargar productos dinámicamente
@@ -38,12 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 carritoOverlay.style.display = 'flex';
             });
 
+            // Cerrar el carrito al hacer clic en el botón "X"
             cerrarCarritoBtn.addEventListener('click', () => {
+                console.log('Cerrando carrito...'); // Depuración
                 carritoOverlay.style.display = 'none';
             });
 
+            // Cerrar el carrito al hacer clic fuera del modal
             carritoOverlay.addEventListener('click', (e) => {
                 if (e.target === carritoOverlay) {
+                    console.log('Cerrando carrito desde overlay...'); // Depuración
                     carritoOverlay.style.display = 'none';
                 }
             });
@@ -96,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function leerDatosCurso(curso) {
         const precioOriginal = parseFloat(curso.querySelector('.precio-original').textContent.replace('$', ''));
         const precioOferta = parseFloat(curso.querySelector('.precio-oferta').textContent.replace('$', ''));
-    
+
         const infoCurso = {
             imagen: curso.querySelector('img').src,
             titulo: curso.querySelector('h4').textContent,
@@ -106,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
             id: curso.querySelector('a').getAttribute('data-id'),
             cantidad: 1,
         };
-    
+
         const existe = articulosCarrito.some((curso) => curso.id === infoCurso.id);
         if (existe) {
             articulosCarrito = articulosCarrito.map((curso) => {
@@ -119,42 +123,42 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             articulosCarrito = [...articulosCarrito, infoCurso];
         }
-    
+
         carritoHTML();
     }
 
     function carritoHTML() {
         limpiarHTML();
-    
+
         let totalCompra = 0;
-    
+
         articulosCarrito.forEach((curso) => {
             const subtotal = curso.precioOferta * curso.cantidad;
             totalCompra += subtotal;
-    
+
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>
-                    <img src="${curso.imagen}" width="100">
+                <td data-label="Imagen">
+                    <img src="${curso.imagen}" width="80" alt="${curso.titulo}">
                 </td>
-                <td>${curso.titulo}</td>
-                <td>$${curso.precioOferta.toFixed(2)}</td>
-                <td>${curso.cantidad}</td>
-                <td>$${(curso.cantidad * (curso.precioOriginal - curso.precioOferta)).toFixed(2)}</td>
-                <td>
+                <td data-label="Nombre">${curso.titulo}</td>
+                <td data-label="Precio">$${curso.precioOferta.toFixed(2)}</td>
+                <td data-label="Cantidad">${curso.cantidad}</td>
+                <td data-label="Ahorro">$${curso.ahorro}</td>
+                <td data-label="Acciones">
                     <a href="#" class="borrar-curso" data-id="${curso.id}">X</a>
                 </td>
             `;
             contenedorCarrito.appendChild(row);
         });
-    
+
         // Actualiza el total de la compra
         document.getElementById('total-compra').textContent = `$${totalCompra.toFixed(2)}`;
-    
+
         sincronizarStorage();
         actualizarContadorCarrito();
     }
-    
+
     function eliminarCurso(e) {
         e.preventDefault();
         if (e.target.classList.contains('borrar-curso')) {
@@ -163,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
             carritoHTML();
         }
     }
-    
+
     function sincronizarStorage() {
         localStorage.setItem('carrito', JSON.stringify(articulosCarrito));
     }
