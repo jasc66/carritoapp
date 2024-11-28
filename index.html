@@ -3,260 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tienda Agrícola</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
     <header id="header" class="header">
         <div class="container">
-            <div class="row">
-                <div class="four columns">
-                    <img src="img/jasc.webp" id="logo" alt="Logo de la tienda">
-                </div>
-                <div class="eight columns">
-                    <nav>
-                        <ul class="menu-principal">
-                            <li><a href="#hero" class="enlace">Inicio</a></li>
-                            <li><a href="#productos" class="enlace">Productos</a></li>
-                            <li><a href="#sobre-nosotros" class="enlace">Sobre Nosotros</a></li>
-                            <li><a href="#contacto" class="enlace">Contacto</a></li>
-                        </ul>                        
-                    </nav>
-                </div>
+            <div class="header-content">
+                <img src="img/jasc.webp" id="logo" alt="Logo de la tienda">
+                <!-- Menú de navegación -->
+                <nav id="nav-menu" class="nav-menu" aria-label="Menú principal">
+                    <ul class="menu-principal">
+                        <li><a href="#hero" class="enlace">Inicio</a></li>
+                        <li><a href="#productos" class="enlace">Productos</a></li>
+                        <li><a href="#sobre-nosotros" class="enlace">Sobre Nosotros</a></li>
+                        <li><a href="#contacto" class="enlace">Contacto</a></li>
+                    </ul>
+                </nav>                
+                <!-- Carrito -->
                 <div class="carrito-container">
                     <div class="submenu">
                         <img src="img/cart.png" id="img-carrito" alt="Carrito de compras">
                         <span id="contador-carrito" class="contador-carrito">0</span>
-                        <div id="carrito">
-                            <table id="lista-carrito" class="u-full-width">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Cantidad</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                            <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
-                        </div>
                     </div>
                 </div>
-            </div> 
+                <!-- Botón del menú hamburguesa -->
+                <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-label="Abrir menú">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
     </header>
 
-    <div id="hero">
+    <!-- Hero Section -->
+    <section id="hero">
         <div class="container">
-            <div class="row">
-                <div class="six columns">
-                    <div class="contenido-hero">
-                        <h2>Productos Frescos y Naturales</h2>
-                        <p>¡Calidad directamente desde el campo!</p>
-                        <form id="busqueda" class="formulario">
-                            <div class="input-container">
-                                <input 
-                                    class="buscador-input" 
-                                    type="text" 
-                                    placeholder="¿Qué producto agrícola buscas?" 
-                                    id="buscador"
-                                >
-                                <button type="submit" id="submit-buscador" class="submit-buscador">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </form>
-                        
+            <div class="contenido-hero">
+                <h2>Productos Frescos y Naturales</h2>
+                <p>¡Calidad directamente desde el campo!</p>
+                <form id="busqueda" class="formulario" role="search">
+                    <div class="input-container">
+                        <input 
+                            class="buscador-input" 
+                            type="text" 
+                            placeholder="¿Qué producto agrícola buscas?" 
+                            id="buscador"
+                        >
+                        <button type="submit" id="submit-buscador" class="submit-buscador" aria-label="Buscar producto">
+                            <i class="fas fa-search"></i>
+                        </button>
                     </div>
-                </div>
-            </div> 
+                </form>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Barra de Iconos -->
     <div class="barra">
         <div class="container">
             <div class="row">
                 <div class="four columns icono icono1">
-                    <p>Calidad Garantizada <br>
-                    Productos 100% frescos</p>
+                    <p>Calidad Garantizada <br> Productos 100% frescos</p>
                 </div>
                 <div class="four columns icono icono2">
-                    <p>Directo del Campo <br>
-                    Apoyamos a los agricultores locales</p>
+                    <p>Directo del Campo <br> Apoyamos a los agricultores locales</p>
                 </div>
                 <div class="four columns icono icono3">
-                    <p>Entrega Rápida <br>
-                    En tu hogar en poco tiempo</p>
+                    <p>Entrega Rápida <br> En tu hogar en poco tiempo</p>
                 </div>
             </div>
         </div>
     </div>
-<section id="productos">
-    <div id="lista-productos" class="container">
-        <h1 id="encabezado" class="encabezado">Productos Agrícolas</h1>
-        <div class="row">
-            <div class="four columns">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/tomates.webp" class="imagen-producto u-full-width" alt="Tomates frescos">
-                    </div>
-                    <div class="info-card">
-                        <h4>Tomates Frescos</h4>
-                        <p>1 kg de tomates orgánicos</p>
-                        <p class="precio">$2.50 <span class="u-pull-right oferta">$2.00</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="1">Agregar Al Carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/Lechuga.jpeg" class="imagen-producto u-full-width" alt="Lechuga">
-                    </div>
-                    <div class="info-card">
-                        <h4>Lechuga Orgánica</h4>
-                        <p>Fresca y lista para tus ensaladas</p>
-                        <p class="precio">$1.50 <span class="u-pull-right oferta">$1.20</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="2">Agregar Al Carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/Zanahoria.webp" class="imagen-producto u-full-width" alt="Zanahorias">
-                    </div>
-                    <div class="info-card">
-                        <h4>Zanahorias Dulces</h4>
-                        <p>1 kg de zanahorias frescas</p>
-                        <p class="precio">$2.00 <span class="u-pull-right oferta">$1.80</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="3">Agregar Al Carrito</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="four columns">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/pepinos.webp" class="imagen-producto u-full-width" alt="Pepinos">
-                    </div>
-                    <div class="info-card">
-                        <h4>Pepinos Frescos</h4>
-                        <p>Perfectos para tus ensaladas</p>
-                        <p class="precio">$1.80 <span class="u-pull-right oferta">$1.50</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="4">Agregar Al Carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/Chile_files/pimientos colores SI.jpg" class="imagen-producto u-full-width" alt="Pimientos">
-                    </div>
-                    <div class="info-card">
-                        <h4>Pimientos de Colores</h4>
-                        <p>1 kg de pimientos orgánicos</p>
-                        <p class="precio">$3.00 <span class="u-pull-right oferta">$2.70</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="5">Agregar Al Carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="img/ajo.webp" class="imagen-producto u-full-width" alt="Ajo fresco">
-                    </div>
-                    <div class="info-card">
-                        <h4>Ajo Fresco</h4>
-                        <p>El mejor sabor para tus recetas</p>
-                        <p class="precio">$1.00 <span class="u-pull-right oferta">$0.90</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="6">Agregar Al Carrito</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Add after the products section -->
-<section id="sobre-nosotros" class="section">
-    <div class="container">
-        <div class="about-content">
-            <h2>Sobre Nosotros</h2>
-            <p>En JASC, nos dedicamos a proporcionar los productos agrícolas más frescos y de la más alta calidad directamente desde el campo hasta tu mesa. Trabajamos en estrecha colaboración con agricultores locales para garantizar que cada producto cumpla con nuestros estándares de excelencia.</p>
-            <p>Nuestra misión es apoyar a la comunidad agrícola local mientras ofrecemos a nuestros clientes productos frescos, saludables y sostenibles. Con años de experiencia en el sector agrícola, entendemos la importancia de la calidad y la frescura en cada producto que ofrecemos.</p>
-        </div>
-    </div>
-</section>
 
-<section id="contacto" class="section">
-    <div class="container">
-        <div class="contact-form">
-            <h2>Contáctanos</h2>
-            <form id="contact-form">
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Enviar Mensaje</button>
-            </form>
+    <!-- Sección Productos -->
+    <section id="productos">
+        <div id="lista-productos" class="container">
+            <h1 id="encabezado" class="encabezado">Productos Agrícolas</h1>
+            <div class="row" id="productos-grid">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <footer id="footer" class="footer">
+    <!-- Sección Sobre Nosotros -->
+    <section id="sobre-nosotros" class="section">
+        <div class="container">
+            <div class="about-content">
+                <h2>Sobre Nosotros</h2>
+                <p>En JASC, nos dedicamos a proporcionar los productos agrícolas más frescos y de la más alta calidad directamente desde el campo hasta tu mesa. Trabajamos en estrecha colaboración con agricultores locales para garantizar que cada producto cumpla con nuestros estándares de excelencia.</p>
+                <p>Nuestra misión es apoyar a la comunidad agrícola local mientras ofrecemos a nuestros clientes productos frescos, saludables y sostenibles. Con años de experiencia en el sector agrícola, entendemos la importancia de la calidad y la frescura en cada producto que ofrecemos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="section">
+        <div class="container">
+            <div class="contact-form">
+                <h2>Contáctanos</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="four columns">
-                    <nav id="principal" class="menu">
-                        <a class="enlace" href="#">Para tu Negocio</a>
-                        <a class="enlace" href="#">Conviértete en Instructor</a>
-                        <a class="enlace" href="#">Aplicaciones Móviles</a>
-                        <a class="enlace" href="#">Soporte</a>
-                        <a class="enlace" href="#">Temas</a>
+                    <nav class="menu">
+                        <a href="#">Para tu Negocio</a>
+                        <a href="#">Conviértete en Instructor</a>
+                        <a href="#">Aplicaciones Móviles</a>
+                        <a href="#">Soporte</a>
+                        <a href="#">Temas</a>
                     </nav>
                 </div>
                 <div class="four columns">
-                    <nav id="secundaria" class="menu">
-                        <a class="enlace" href="#">¿Quiénes Somos?</a>
-                        <a class="enlace" href="#">Empleo</a>
-                        <a class="enlace" href="#">Blog</a>
+                    <nav class="menu">
+                        <a href="#">¿Quiénes Somos?</a>
+                        <a href="#">Empleo</a>
+                        <a href="#">Blog</a>
                     </nav>
                 </div>
                 <div class="four columns">
-                    <nav id="redes-sociales" class="menu">
-                        <a href="#" class="enlace social-icon facebook">
-                            <i class="fab fa-facebook-f"></i> Facebook
-                        </a>
-                        <a href="#" class="enlace social-icon twitter">
-                            <i class="fab fa-twitter"></i> Twitter
-                        </a>
-                        <a href="#" class="enlace social-icon instagram">
-                            <i class="fab fa-instagram"></i> Instagram
-                        </a>
-                        <a href="#" class="enlace social-icon youtube">
-                            <i class="fab fa-youtube"></i> YouTube
-                        </a>
+                    <nav class="menu">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i> YouTube</a>
                     </nav>
                 </div>
             </div>
+            <div class="footer-legal">
+                <p>&copy; 2024 Tienda Agrícola. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
-    <script src="js/app.js"></script>
+    <!-- Carrito Modal -->
+    <div id="carrito-overlay" class="carrito-overlay">
+        <div id="carrito" class="carrito-modal">
+            <h2>Tu Carrito</h2>
+            <div class="carrito-contenido">
+                <table id="lista-carrito">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los elementos del carrito se agregarán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="carrito-acciones">
+                <button id="vaciar-carrito" class="button btn-vaciar">Vaciar Carrito</button>
+                <button id="cerrar-carrito" class="button btn-cerrar">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
 </body>
 </html>
-
