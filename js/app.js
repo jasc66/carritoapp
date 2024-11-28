@@ -190,13 +190,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productoHTML = `
                     <div class="card">
                         <div class="card-image">
-                            <img src="${producto.imagen}" class="imagen-producto u-full-width" alt="${producto.nombre}">
+                            <img src="${producto.imagen}" alt="${producto.nombre}">
                         </div>
                         <div class="info-card">
                             <h4>${producto.nombre}</h4>
                             <p>${producto.descripcion}</p>
-                            <p class="precio">$${producto.precio} <span class="u-pull-right oferta">$${producto.oferta}</span></p>
-                            <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="${producto.id}">Agregar Al Carrito</a>
+                            <p>
+                                <span class="precio-original">$${producto.precio.toFixed(2)}</span>
+                                <span class="precio-oferta">$${producto.oferta.toFixed(2)}</span>
+                            </p>
+                            <a href="#" class="agregar-carrito" data-id="${producto.id}">Agregar Al Carrito</a>
                         </div>
                     </div>
                 `;

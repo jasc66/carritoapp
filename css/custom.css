@@ -356,16 +356,18 @@ img {
     gap: 2rem;
 }
 
+/* Estilo general para los productos */
 .card {
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .card-image img {
@@ -376,20 +378,32 @@ img {
 
 .info-card {
     padding: 1.5rem;
+    text-align: center;
 }
 
 .info-card h4 {
     margin-top: 0;
     margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
 .info-card p {
     margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: #555;
 }
 
-.precio {
-    font-weight: bold;
+.precio-original {
+    text-decoration: line-through;
+    color: #b0b0b0;
+    font-size: 1.4rem;
+    margin-right: 0.5rem;
+}
+
+.precio-oferta {
     color: #4CAF50;
+    font-size: 1.8rem;
+    font-weight: bold;
 }
 
 .agregar-carrito {
@@ -409,6 +423,7 @@ img {
 .agregar-carrito:hover {
     background-color: #45a049;
 }
+
 
 /* Sobre nosotros */
 #sobre-nosotros {
